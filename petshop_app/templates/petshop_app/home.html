@@ -1,0 +1,128 @@
+{% extends 'petshop_app/base.html' %}
+{% load static %}
+
+{% block title %}Dogo Manager - Inicio{% endblock %}
+
+{% block header %}Bienvenido a Dogo Manager{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Banner de bienvenida -->
+    <div class="col-md-12 mb-4">
+        <div class="welcome-banner p-4 bg-light rounded-3 d-flex align-items-center" style="background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%), url('{% static 'petshop_app/img/logo.svg' %}') no-repeat right center; background-size: contain;">
+            <div>
+                <h2 class="fw-bold text-dogo-blue">¡Es hora de brillar!</h2>
+                <p class="mb-0">Dale a tu mascota el cuidado que merece con Dogo Armani.</p>
+                <p class="mb-0">Utiliza el menú lateral para navegar por las funciones del sistema.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-12 mb-4">
+        <h4 class="text-dogo-blue">Acciones rápidas</h4>
+        <hr>
+    </div>
+
+    <!-- Card para Ingresar Producto -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <div class="icon-wrapper mb-3 rounded-circle bg-light d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                    <i class="fas fa-box-open fa-2x text-dogo-blue"></i>
+                </div>
+                <h5 class="card-title fw-bold">Ingreso de Producto</h5>
+                <p class="card-text text-muted">Registra un nuevo producto en el inventario.</p>
+                <a href="{% url 'producto-create' %}" class="btn btn-primary">
+                    <i class="fas fa-plus-circle me-2"></i> Ingresar Producto
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card para Ingresar Servicio -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <div class="icon-wrapper mb-3 rounded-circle bg-light d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                    <i class="fas fa-concierge-bell fa-2x text-dogo-blue"></i>
+                </div>
+                <h5 class="card-title fw-bold">Ingreso de Servicio</h5>
+                <p class="card-text text-muted">Registra un nuevo servicio para ofrecer.</p>
+                <a href="{% url 'servicio-create' %}" class="btn btn-dogo-accent">
+                    <i class="fas fa-plus-circle me-2"></i> Ingresar Servicio
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card para Registrar Venta -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <div class="icon-wrapper mb-3 rounded-circle bg-light d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                    <i class="fas fa-shopping-cart fa-2x text-dogo-blue"></i>
+                </div>
+                <h5 class="card-title fw-bold">Producto Vendido</h5>
+                <p class="card-text text-muted">Registra la venta de un producto.</p>
+                <a href="{% url 'venta-producto-create' %}" class="btn btn-primary">
+                    <i class="fas fa-shopping-cart me-2"></i> Registrar Venta
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card para Registrar Servicio Realizado -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <div class="icon-wrapper mb-3 rounded-circle bg-light d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                    <i class="fas fa-check-circle fa-2x text-dogo-blue"></i>
+                </div>
+                <h5 class="card-title fw-bold">Servicio Hecho</h5>
+                <p class="card-text text-muted">Registra un servicio realizado.</p>
+                <a href="{% url 'servicio-realizado-create' %}" class="btn btn-dogo-accent">
+                    <i class="fas fa-check-circle me-2"></i> Registrar Servicio
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card para Dashboard -->
+    <div class="col-md-12 mt-2">
+        <div class="card shadow-sm">
+            <div class="card-body d-flex align-items-center p-4">
+                <div class="icon-wrapper me-4">
+                    <i class="fas fa-chart-line fa-3x text-dogo-blue"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <h5 class="card-title fw-bold">Dashboard de Ventas</h5>
+                    <p class="card-text text-muted mb-0">Visualiza el resumen de ventas y servicios, analiza tendencias y toma decisiones informadas para tu negocio.</p>
+                </div>
+                <div>
+                    <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Información de contacto -->
+    <div class="col-md-12 mt-5">
+        <div class="contact-info p-4 rounded-3 d-flex justify-content-between align-items-center" style="background-color: #f8f9fa; border-left: 5px solid var(--dogo-yellow);">
+            <div>
+                <h5 class="text-dogo-blue mb-2">¿Necesitas ayuda?</h5>
+                <p class="mb-0 text-muted">Contacta con soporte si tienes alguna duda sobre el sistema.</p>
+            </div>
+            <div class="text-end">
+                <p class="mb-0">
+                    <i class="fab fa-instagram text-dogo-blue"></i> @DOGOARMANI
+                </p>
+                <p class="mb-0">
+                    <i class="fab fa-whatsapp text-dogo-blue"></i> 0995666556
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

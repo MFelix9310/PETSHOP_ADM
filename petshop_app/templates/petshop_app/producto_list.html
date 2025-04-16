@@ -1,0 +1,160 @@
+{% extends 'petshop_app/base.html' %}
+{% load static %}
+
+{% block title %}Dogo Manager - Lista de Productos{% endblock %}
+
+{% block header %}Lista de Productos{% endblock %}
+
+{% block content %}
+<div class="mb-3 d-flex justify-content-between align-items-center">
+    <h5 class="text-dogo-blue mb-0">
+        <i class="fas fa-box-open me-2"></i> Catálogo de productos
+    </h5>
+    <a href="{% url 'producto-create' %}" class="btn btn-primary">
+        <i class="fas fa-plus-circle me-2"></i> Nuevo Producto
+    </a>
+</div>
+
+<ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="django-tab" data-bs-toggle="tab" data-bs-target="#django-products" type="button" role="tab" aria-controls="django-products" aria-selected="true">
+            <i class="fas fa-database me-2"></i> Django ORM
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="sqlalchemy-tab" data-bs-toggle="tab" data-bs-target="#sqlalchemy-products" type="button" role="tab" aria-controls="sqlalchemy-products" aria-selected="false">
+            <i class="fas fa-database me-2"></i> SQLAlchemy
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+    <!-- Productos Django ORM -->
+    <div class="tab-pane fade show active" id="django-products" role="tabpanel" aria-labelledby="django-tab">
+        <div class="table-responsive table-container">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Fecha Ingreso</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if productos %}
+                        {% for producto in productos %}
+                            <tr>
+                                <td>{{ producto.codigo }}</td>
+                                <td>{{ producto.nombre }}</td>
+                                <td>{{ producto.descripcion|truncatewords:10 }}</td>
+                                <td>${{ producto.precio }}</td>
+                                <td>
+                                    {% if producto.stock > 0 %}
+                                        <span class="badge bg-success">{{ producto.stock }}</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">Sin stock</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ producto.fecha_ingreso|date:"d/m/Y H:i" }}</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a href="{% url 'producto-update' producto.pk %}" class="btn btn-sm btn-outline-primary" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="{% url 'producto-delete' producto.pk %}" class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <a href="{% url 'venta-rapida' producto.pk %}" class="btn btn-sm btn-outline-success" title="Vender">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center">No hay productos registrados en Django ORM.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Productos SQLAlchemy -->
+    <div class="tab-pane fade" id="sqlalchemy-products" role="tabpanel" aria-labelledby="sqlalchemy-tab">
+        <div class="table-responsive table-container">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Fecha Ingreso</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if productos_sqlalchemy %}
+                        {% for producto in productos_sqlalchemy %}
+                            <tr>
+                                <td>{{ producto.codigo }}</td>
+                                <td>{{ producto.nombre }}</td>
+                                <td>{{ producto.descripcion|truncatewords:10 }}</td>
+                                <td>${{ producto.precio }}</td>
+                                <td>
+                                    {% if producto.stock > 0 %}
+                                        <span class="badge bg-success">{{ producto.stock }}</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">Sin stock</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ producto.fecha_ingreso|date:"d/m/Y H:i" }}</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-sm btn-outline-primary disabled" title="Editar (Solo disponible en Django ORM)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger disabled" title="Eliminar (Solo disponible en Django ORM)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-success disabled" title="Vender (Solo disponible en Django ORM)">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center">No hay productos registrados en SQLAlchemy.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="card bg-light border-0 mt-4">
+    <div class="card-body d-flex">
+        <div class="flex-shrink-0 me-3">
+            <i class="fas fa-info-circle fa-2x text-dogo-blue"></i>
+        </div>
+        <div>
+            <h6 class="mb-1 fw-bold">Información</h6>
+            <p class="mb-0 text-muted small">
+                Los productos se almacenan en dos bases de datos diferentes: Django ORM y SQLAlchemy. 
+                Ambas utilizan el mismo archivo SQLite3 pero en tablas independientes. 
+                Los cambios realizados en una base de datos no afectan a la otra.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %} 

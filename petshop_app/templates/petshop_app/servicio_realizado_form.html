@@ -1,0 +1,72 @@
+{% extends 'petshop_app/base.html' %}
+
+{% block title %}PetShop - Servicio Realizado{% endblock %}
+
+{% block header %}Registrar Servicio Realizado{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_servicio" class="form-label">Servicio</label>
+                <select name="servicio" class="form-control" id="id_servicio" required>
+                    <option value="">---------</option>
+                    {% for choice in form.fields.servicio.choices %}
+                        {% if choice.0 %}
+                            <option value="{{ choice.0 }}" {% if form.servicio.value|stringformat:"s" == choice.0|stringformat:"s" %}selected{% endif %}>
+                                {{ choice.1 }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                {% if form.servicio.errors %}
+                    <div class="text-danger">{{ form.servicio.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="mb-3">
+                <label for="id_precio_cobrado" class="form-label">Precio Cobrado</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name="precio_cobrado" class="form-control" id="id_precio_cobrado" step="0.01" required {% if form.precio_cobrado.value %}value="{{ form.precio_cobrado.value }}"{% endif %}>
+                </div>
+                {% if form.precio_cobrado.errors %}
+                    <div class="text-danger">{{ form.precio_cobrado.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="mb-3">
+                <label for="id_observaciones" class="form-label">Observaciones</label>
+                <textarea name="observaciones" class="form-control" id="id_observaciones" rows="3">{% if form.observaciones.value %}{{ form.observaciones.value }}{% endif %}</textarea>
+                {% if form.observaciones.errors %}
+                    <div class="text-danger">{{ form.observaciones.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-info">Registrar Servicio Realizado</button>
+                <a href="{% url 'servicio-realizado-list' %}" class="btn btn-secondary ms-2">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Cuando cambia el servicio seleccionado
+        $('#id_servicio').change(function() {
+            var servicioId = $(this).val();
+            if (servicioId) {
+                // En un sistema real, haríamos una petición AJAX para obtener
+                // el precio del servicio seleccionado
+                // Por ahora, solo es un ejemplo de funcionalidad
+                console.log("Servicio seleccionado: " + servicioId);
+            }
+        });
+    });
+</script>
+{% endblock %} 

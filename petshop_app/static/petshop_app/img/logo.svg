@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150">
+  <!-- DOGO ARMANI Texto -->
+  <g>
+    <text x="50" y="70" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#0072CE">DOGO</text>
+    <text x="50" y="120" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#0072CE">ARMANI</text>
+  </g>
+  <!-- Cara de perro estilizada -->
+  <g transform="translate(20, 35) scale(0.5)">
+    <circle cx="30" cy="30" r="15" fill="#0072CE" />
+    <circle cx="70" cy="30" r="15" fill="#0072CE" />
+    <circle cx="50" cy="55" r="25" fill="#FFD100" />
+    <ellipse cx="50" cy="60" rx="15" ry="10" fill="#0072CE" />
+  </g>
+  <!-- Eslogan -->
+  <text x="50" y="140" font-family="Arial, sans-serif" font-size="12" fill="#0072CE">Estilo & cuidado para mascotas</text>
+</svg> 

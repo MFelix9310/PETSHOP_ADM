@@ -1,0 +1,27 @@
+{% extends 'petshop_app/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Confirmar eliminación</h4>
+                </div>
+                <div class="card-body">
+                    <p class="lead">¿Estás seguro de que deseas eliminar el servicio "{{ object.nombre }}"?</p>
+                    <p class="text-muted">Esta acción no se puede deshacer.</p>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-end mt-3">
+                            <a href="{% url 'servicio-list' %}" class="btn btn-secondary me-2">Cancelar</a>
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,223 @@
+{% extends 'petshop_app/base.html' %}
+{% load static %}
+
+{% block title %}Dogo Manager - Dashboard{% endblock %}
+
+{% block header %}Dashboard de Ventas y Servicios{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Resumen financiero -->
+    <div class="col-md-12 mb-4">
+        <div class="card border-0 bg-light">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-dogo-blue mb-0">
+                        <i class="fas fa-chart-line me-2"></i> Resumen Financiero
+                    </h5>
+                    <span class="badge bg-dogo-yellow text-dogo-blue">
+                        <i class="far fa-calendar-alt me-1"></i> Este mes
+                    </span>
+                </div>
+                <div class="row">
+                    <!-- Total Ventas -->
+                    <div class="col-md-4">
+                        <div class="summary-card primary-card">
+                            <div class="icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="title">Total Ventas</div>
+                            <div class="value text-dogo-blue">${{ total_ventas|floatformat:2 }}</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Total Servicios -->
+                    <div class="col-md-4">
+                        <div class="summary-card warning-card">
+                            <div class="icon">
+                                <i class="fas fa-concierge-bell"></i>
+                            </div>
+                            <div class="title">Total Servicios</div>
+                            <div class="value text-dogo-blue">${{ total_servicios|floatformat:2 }}</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Total Ingresos -->
+                    <div class="col-md-4">
+                        <div class="summary-card success-card">
+                            <div class="icon">
+                                <i class="fas fa-sack-dollar"></i>
+                            </div>
+                            <div class="title">Total Ingresos</div>
+                            <div class="value text-dogo-blue">${{ total_ingresos|floatformat:2 }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Gráficos y tablas -->
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-dogo-blue text-white d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-box-open me-2"></i> Productos más vendidos</span>
+                <a href="{% url 'producto-list' %}" class="btn btn-sm btn-outline-light">
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive table-container">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th class="text-end">Cantidad</th>
+                                <th class="text-end">Tendencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for producto in productos_mas_vendidos %}
+                                <tr>
+                                    <td>{{ producto.producto__nombre }}</td>
+                                    <td class="text-end">{{ producto.total }}</td>
+                                    <td class="text-end">
+                                        <span class="badge rounded-pill bg-success">
+                                            <i class="fas fa-arrow-up"></i>
+                                        </span>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center py-4">
+                                        <div class="text-muted">
+                                            <i class="fas fa-info-circle me-2"></i> No hay datos de ventas
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-dogo-yellow text-dogo-blue d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-concierge-bell me-2"></i> Servicios más realizados</span>
+                <a href="{% url 'servicio-list' %}" class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive table-container">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Servicio</th>
+                                <th class="text-end">Cantidad</th>
+                                <th class="text-end">Tendencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for servicio in servicios_mas_realizados %}
+                                <tr>
+                                    <td>{{ servicio.servicio__nombre }}</td>
+                                    <td class="text-end">{{ servicio.total }}</td>
+                                    <td class="text-end">
+                                        <span class="badge rounded-pill bg-success">
+                                            <i class="fas fa-arrow-up"></i>
+                                        </span>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center py-4">
+                                        <div class="text-muted">
+                                            <i class="fas fa-info-circle me-2"></i> No hay datos de servicios
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Gráfico de distribución (simulado) -->
+    <div class="col-md-12 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-dogo-blue text-white">
+                <i class="fas fa-chart-pie me-2"></i> Distribución de Ingresos
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center justify-content-around">
+                    <!-- Simulación de gráfico circular -->
+                    <div class="col-md-4 text-center">
+                        <div style="width: 200px; height: 200px; margin: 0 auto; position: relative; border-radius: 50%; background: conic-gradient(var(--dogo-blue) {{ total_ventas|default:0|floatformat:0 }}%, var(--dogo-yellow) 0);">
+                        </div>
+                    </div>
+                    
+                    <!-- Leyenda del gráfico -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <h6 class="fw-bold text-dogo-blue">Distribución por tipo</h6>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <span class="badge bg-dogo-blue">&nbsp;</span>
+                                    Ventas de Productos
+                                </div>
+                                <span class="fw-bold">{{ total_ventas|floatformat:2 }}$</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="badge bg-dogo-yellow">&nbsp;</span>
+                                    Servicios Realizados
+                                </div>
+                                <span class="fw-bold">{{ total_servicios|floatformat:2 }}$</span>
+                            </div>
+                        </div>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i> 
+                            Este gráfico muestra la proporción de ingresos entre ventas de productos y servicios realizados.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Botones de acciones rápidas -->
+    <div class="col-md-12 mt-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-dogo-blue mb-3"><i class="fas fa-bolt me-2"></i> Acciones Rápidas</h5>
+                <div class="d-flex gap-2 flex-wrap">
+                    <a href="{% url 'venta-producto-create' %}" class="btn btn-primary">
+                        <i class="fas fa-shopping-cart me-2"></i> Nueva Venta
+                    </a>
+                    <a href="{% url 'servicio-realizado-create' %}" class="btn btn-dogo-accent">
+                        <i class="fas fa-check-circle me-2"></i> Nuevo Servicio
+                    </a>
+                    <a href="{% url 'producto-create' %}" class="btn btn-primary">
+                        <i class="fas fa-plus-circle me-2"></i> Nuevo Producto
+                    </a>
+                    <a href="{% url 'servicio-create' %}" class="btn btn-dogo-accent">
+                        <i class="fas fa-concierge-bell me-2"></i> Nuevo Servicio
+                    </a>
+                    <a href="{% url 'producto-list' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-list me-2"></i> Ver Productos
+                    </a>
+                    <a href="{% url 'servicio-list' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-list-alt me-2"></i> Ver Servicios
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

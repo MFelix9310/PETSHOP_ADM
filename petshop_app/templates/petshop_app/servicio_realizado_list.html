@@ -1,0 +1,54 @@
+{% extends 'petshop_app/base.html' %}
+
+{% block title %}PetShop - Servicios Realizados{% endblock %}
+
+{% block header %}Servicios Realizados{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Servicios Realizados</h4>
+            <a href="{% url 'servicio-realizado-create' %}" class="btn btn-light">
+                <i class="fas fa-plus"></i> Registrar servicio realizado
+            </a>
+        </div>
+        <div class="card-body">
+            {% if object_list %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Servicio</th>
+                                <th>Fecha</th>
+                                <th>Precio Cobrado</th>
+                                <th>Observaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for servicio_realizado in object_list %}
+                                <tr>
+                                    <td>{{ servicio_realizado.servicio.nombre }}</td>
+                                    <td>{{ servicio_realizado.fecha_realizado|date:"d/m/Y H:i" }}</td>
+                                    <td>${{ servicio_realizado.precio_cobrado }}</td>
+                                    <td>
+                                        {% if servicio_realizado.observaciones %}
+                                            {{ servicio_realizado.observaciones|truncatewords:10 }}
+                                        {% else %}
+                                            <span class="text-muted">Sin observaciones</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    No hay servicios realizados registrados. <a href="{% url 'servicio-realizado-create' %}">Registrar nuevo servicio realizado</a>.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

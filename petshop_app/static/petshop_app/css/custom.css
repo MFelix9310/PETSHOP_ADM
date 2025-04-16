@@ -1,0 +1,267 @@
+:root {
+    --dogo-blue: #0072CE;
+    --dogo-yellow: #FFD100;
+    --dogo-dark-blue: #005699;
+    --dogo-light-blue: #4D97D3;
+    --dogo-light-yellow: #FFE066;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Sidebar personalizada */
+.sidebar {
+    min-height: 100vh;
+    background-color: var(--dogo-blue);
+    color: white;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar .brand-container {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-bottom: 3px solid var(--dogo-yellow);
+}
+
+.sidebar .logo-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.sidebar a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    display: block;
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin: 2px 5px;
+    transition: all 0.3s;
+}
+
+.sidebar a:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .active {
+    color: var(--dogo-blue);
+    background-color: var(--dogo-yellow);
+    font-weight: bold;
+}
+
+.sidebar .nav-item {
+    margin-bottom: 3px;
+}
+
+.sidebar .nav-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 15px;
+    padding-top: 15px;
+}
+
+.sidebar .section-title {
+    color: var(--dogo-yellow);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0 15px;
+    margin-bottom: 5px;
+}
+
+/* Navbar personalizada */
+.main-navbar {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-bottom: 3px solid var(--dogo-yellow);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: var(--dogo-blue) !important;
+}
+
+/* Cards y elementos de la UI */
+.card {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-weight: bold;
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+}
+
+.card-header.bg-primary {
+    background-color: var(--dogo-blue) !important;
+}
+
+.btn-primary {
+    background-color: var(--dogo-blue);
+    border-color: var(--dogo-blue);
+}
+
+.btn-primary:hover {
+    background-color: var(--dogo-dark-blue);
+    border-color: var(--dogo-dark-blue);
+}
+
+.btn-warning, .border-warning {
+    background-color: var(--dogo-yellow);
+    border-color: var(--dogo-yellow);
+    color: var(--dogo-blue);
+}
+
+.btn-warning:hover {
+    background-color: var(--dogo-light-yellow);
+    border-color: var(--dogo-light-yellow);
+    color: var(--dogo-dark-blue);
+}
+
+.btn-dogo-accent {
+    background-color: var(--dogo-yellow);
+    border-color: var(--dogo-yellow);
+    color: var(--dogo-blue);
+    font-weight: bold;
+}
+
+.btn-dogo-accent:hover {
+    background-color: var(--dogo-light-yellow);
+    color: var(--dogo-dark-blue);
+}
+
+/* Tabla de datos */
+.table-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 5px;
+}
+
+.table thead {
+    background-color: var(--dogo-blue);
+    color: white;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 114, 206, 0.05);
+}
+
+/* Footer */
+.dogo-footer {
+    background-color: var(--dogo-blue);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Estilos para tarjetas de resumen en dashboard */
+.summary-card {
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: white;
+}
+
+.summary-card .title {
+    font-weight: bold;
+    color: var(--dogo-blue);
+    margin-bottom: 10px;
+}
+
+.summary-card .value {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.summary-card .icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--dogo-yellow);
+}
+
+.summary-card.primary-card {
+    border-left: 5px solid var(--dogo-blue);
+}
+
+.summary-card.warning-card {
+    border-left: 5px solid var(--dogo-yellow);
+}
+
+.summary-card.success-card {
+    border-left: 5px solid #28a745;
+}
+
+/* Animaciones y efectos */
+.fade-in {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Estilos para los formularios */
+.form-label {
+    color: var(--dogo-blue);
+    font-weight: 600;
+}
+
+.form-control:focus {
+    border-color: var(--dogo-light-blue);
+    box-shadow: 0 0 0 0.25rem rgba(0, 114, 206, 0.25);
+}
+
+/* Botón flotante para acciones rápidas */
+.btn-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.bg-dogo-blue {
+    background-color: var(--dogo-blue) !important;
+}
+
+.bg-dogo-yellow {
+    background-color: var(--dogo-yellow) !important;
+}
+
+.text-dogo-blue {
+    color: var(--dogo-blue) !important;
+}
+
+.text-dogo-yellow {
+    color: var(--dogo-yellow) !important;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 992px) {
+    .sidebar {
+        min-height: auto;
+    }
+} 

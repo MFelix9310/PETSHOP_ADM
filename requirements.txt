@@ -1,0 +1,26 @@
+# Core dependencies
+Django==5.1.1  # El framework web principal utilizado en la aplicación
+sqlalchemy==2.0.25  # ORM utilizado para la funcionalidad de base de datos adicional
+
+# Database adapters
+# Si cambias a PostgreSQL, descomenta la siguiente línea
+# psycopg2-binary==2.9.9
+
+# Herramientas de desarrollo
+# Útiles para el desarrollo local, pero no son necesarias en producción
+whitenoise==6.6.0  # Para servir archivos estáticos en producción
+python-dotenv==1.0.0  # Para cargar variables de entorno desde un archivo .env
+
+# Formateadores y extensiones opcionales
+# Descomenta si quieres añadir estilos a los formularios
+# django-crispy-forms==2.1  # Para mejorar la apariencia de los formularios
+# crispy-bootstrap5==0.7  # Para integrar crispy-forms con Bootstrap 5
+
+# Seguridad
+# Recomendado cuando despliegues en producción
+# django-axes==5.40.1  # Para protección contra intentos de login
+# django-csp==3.7  # Para la política de seguridad de contenido
+
+# Rendimiento
+# Útil si la aplicación crece
+# django-redis==5.4.0  # Para cache con Redis 

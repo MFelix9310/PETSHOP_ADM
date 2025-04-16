@@ -1,0 +1,84 @@
+{% extends 'petshop_app/base.html' %}
+
+{% block title %}Dogo Manager - Ingreso de Servicio{% endblock %}
+
+{% block header %}
+    <i class="fas fa-concierge-bell me-2"></i> Ingreso de Servicio
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow mt-4">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">{% if object %}Editar{% else %}Nuevo{% endif %} Servicio</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="id_nombre" class="form-label">Nombre</label>
+                            <input type="text" name="nombre" class="form-control" id="id_nombre" required {% if form.nombre.value %}value="{{ form.nombre.value }}"{% endif %}>
+                            {% if form.nombre.errors %}
+                                <div class="text-danger">
+                                    {{ form.nombre.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_descripcion" class="form-label">Descripción</label>
+                            <textarea name="descripcion" class="form-control" id="id_descripcion" rows="3">{% if form.descripcion.value %}{{ form.descripcion.value }}{% endif %}</textarea>
+                            {% if form.descripcion.errors %}
+                                <div class="text-danger">
+                                    {{ form.descripcion.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_precio" class="form-label">Precio</label>
+                            <input type="number" name="precio" class="form-control" id="id_precio" step="0.01" required {% if form.precio.value %}value="{{ form.precio.value }}"{% endif %}>
+                            {% if form.precio.errors %}
+                                <div class="text-danger">
+                                    {{ form.precio.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_duracion_estimada" class="form-label">Duración Estimada (minutos)</label>
+                            <input type="number" name="duracion_estimada" class="form-control" id="id_duracion_estimada" required {% if form.duracion_estimada.value %}value="{{ form.duracion_estimada.value }}"{% endif %}>
+                            {% if form.duracion_estimada.errors %}
+                                <div class="text-danger">
+                                    {{ form.duracion_estimada.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-flex justify-content-end mt-3">
+                            <a href="{% url 'servicio-list' %}" class="btn btn-secondary me-2">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Estilizar inputs cuando reciben foco
+        $('input, textarea').focus(function() {
+            $(this).addClass('border-primary');
+        }).blur(function() {
+            $(this).removeClass('border-primary');
+        });
+    });
+</script>
+{% endblock %} 
